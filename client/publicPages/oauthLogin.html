@@ -1,0 +1,73 @@
+<template name="oauthLogin">
+<div class="container">
+  {{#unless isUrlParamsValid }}
+    <div class="panel panel-default panel-danger">
+      <div class="panel-heading">
+        <h3 class="panel-title">Error</h3>
+      </div>
+      <div class="panel-body">
+        Please check your oauth configuration
+      </div>
+    </div>
+  {{/unless}}
+
+    {{#if currentUser}}
+      <div class="panel panel-default panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">You are currently loggedin using: {{currentEmail}}</h3>
+        </div>
+        <div class="panel-body">
+          {{> loginButtons}}
+          <button class="authorize btn btn-sm btn-primary">Authorize</button>
+
+          {{#if grantResult}}
+              <h3>Step A5.2 - Return Access Tokens</h3>
+              <p>Grant was run with the given params. Normally, the user would be redirected to the redirect URI.</p>
+              <table>
+                  <tr>
+                      <td>Success</td>
+                      <td>{{ grantResult.success }}</td>
+                  </tr>
+                  <tr>
+                      <td>Error</td>
+                      <td>{{ grantResult.error }}</td>
+                  </tr>
+                  <tr>
+                      <td>Authorization Code</td>
+                      <td>{{ grantResult.authorizationCode }}</td>
+                  </tr>
+                  <tr>
+                      <td>RedirectUri</td>
+                      <td><a href="{{ grantResult.redirectToUri}}">{{ grantResult.redirectToUri}}</a></td>
+                  </tr>
+              </table>
+
+          {{/if}}
+        </div>
+      </div>
+      {{else}}
+      <div class="col-sm-6">
+      <div class="panel panel-default panel-success">
+        <div class="panel-heading">
+          <h3 class="panel-title">Signin</h3>
+        </div>
+        <div class="panel-body">
+          <div class="row">
+          <div class="input-group">
+            <span class="input-group-addon">Username</span>
+            <input type="text" id="userName" class="form-control">
+          </div>
+        </div>
+        <div class="row">
+            <div class="input-group">
+              <span class="input-group-addon">Password</span>
+              <input type="password" id="passWord" class="form-control">
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-primary btn-sm btn-login">Login</button>
+      </div>
+    </div>
+    {{/if}}
+    </div>
+</template>

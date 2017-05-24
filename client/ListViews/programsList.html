@@ -1,0 +1,49 @@
+<template name="programsList">
+  <div class="panel panel-default panel-program">
+    <div class="panel-heading">
+      <a href="/program/{{_id}}">
+        <i class="fa fa-angle-double-right pull-right" aria-hidden="true"></i>
+        <h3 class="panel-title"><i class="fa fa-th-list"></i> {{subject}}</h3>
+      </a>
+    </div>
+      <div class="panel-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <h4><i class="fa fa-calendar"></i> <b>Start Date: </b>{{formatDate start_date}}</h4>
+          </div>
+          <div class="col-sm-6">
+            <h4><i class="fa fa-calendar"></i> <b>End Date: </b>{{formatDate end_date}}</h4>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <i class="fa fa-map-marker"></i> <b>Address: </b>{{address}}
+          </div>
+          <div class="col-sm-6">
+            <i class="fa fa-book"></i> <b>Class Size: </b>{{size}}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-sm-6">
+            <i class="fa fa-user"></i> <b>Current Enrollment: </b>{{numberEnrolled}}
+          </div>
+
+          <div class="col-sm-6">
+            {{#if isInRole 'admin'}}
+            {{else}}
+              {{#if currentUser}}
+
+                {{#if enrolled}}
+                  <button class="btn pull-right {{enrollCSS}}" disabled="disabled">{{enrollStauts}}</button>
+                {{else}}
+                  <button class="btn btn-primary btn-enroll pull-right"> {{enrollStauts}}</button>
+                {{/if}}
+
+              {{/if}}
+            {{/if}}
+          </div>
+
+        </div>
+      </div>
+  </div>
+</template>

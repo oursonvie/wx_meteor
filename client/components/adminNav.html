@@ -1,0 +1,35 @@
+<template name="adminNav">
+  <div class="navbar navbar-inverse" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+        <a class="navbar-brand" href="/admin">IKCEST Dashboard</a>
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+    </div>
+
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li role="presentation" class={{isActiveRoute 'adminNews'}}><a href="/admin/news">News</a></li>
+
+          <li role="presentation" class={{isActiveRoute 'adminProgram'}}><a href="/admin/program">Program</a></li>
+
+          <li role="presentation" class={{isActiveRoute 'adminStudent'}}><a href="/admin/student/page/1">Student</a></li>
+
+          <li role="presentation" class={{isActiveRoute 'users'}}><a href="/admin/users">Users</a></li>
+
+          <li role="presentation" class={{isActiveRoute 'oauthHome'}}><a href="/admin/oauth">Oauth</a></li>
+
+          <li role="presentation" class={{isActiveRoute 'adminMe'}}><a href="/admin/me">Me</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {{> loginButtons}}
+        </ul>
+    </div>
+  </div>
+</div>
+
+</template>

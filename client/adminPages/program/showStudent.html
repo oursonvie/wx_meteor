@@ -1,0 +1,107 @@
+<template name="showStudent">
+  <div class="row">
+    <a href="/admin/program" ><i class="fa fa-chevron-left"></i></a>
+    <hr>
+  </div>
+  {{#with program}}
+  <div class="row">
+  <div class="panel panel-default">
+    <div class="panel-heading clearfix">
+      <h4 class="panel-title pull-left" style="padding-top: 7.5px;"><a href="/program/{{_id}}">{{subject}}</a></h4>
+      <div class="btn-group pull-right">
+
+        <label class="btn btn-default btn-sm btn-file">
+    Import<input type="file" id="hiddenUpload" style="display: none;">
+        </label>
+        <button class="btn btn-default btn-sm btn-download">Download</button>
+
+        <label class="btn btn-default btn-sm">
+    Upload Photo<input type="file" id="photoUpload" style="display: none;" multiple>
+        </label>
+        
+        {{#if ifSelected}}
+        <button class="btn btn-danger btn-sm btn-delete">Delete Students</button>
+
+          <div class="btn-group">
+            <button type="button" class="btn btn-info btn-sm dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Status <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+              <li><a href="#" id="pending">Pending</a></li>
+              <li><a href="#" id="enrolled">Enrolled</a></li>
+              <li><a href="#" id="completed">Completed</a></li>
+            </ul>
+          </div>
+        {{/if}}
+
+      </div>
+    </div>
+    <div class="panel-body">
+      <table class="table table-hover">
+        <tbody>
+          <tr>
+            <th><input type="checkbox" id="checkAll" aria-label="..."></th>
+            <th>#</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Email</th>
+            <th>Telephone</th>
+            <th style="text-align: center">Status</th>
+          </tr>
+          {{#if Template.subscriptionsReady}}
+
+              {{#each students}}
+
+                {{#if importStudent}}
+                  <tr class="danger">
+                    <td><input type="checkbox" id="{{this._id}}" aria-label="..."></td>
+                    <td>{{number @index}}</td>
+                    <td><a href="/admin/student/{{_id}}">
+                      {{#if profilePhoto}}
+                        <i class="fa fa-user-circle" aria-hidden="true"></i> {{full_name}}
+                      {{else}}
+                        {{full_name}}
+                      {{/if}}
+                    </a></td>
+                    <td>{{gender}}</td>
+                    <td>{{email}}</td>
+                    <td>{{telephone}}</td>
+                    <td align="center"><button class="btn btn-sm disabled {{enrollCSS}}">{{enrollStatus}}</button></td>
+                  </tr>
+                {{else}}
+                  <tr class="success">
+                    <td><input type="checkbox" id="{{this._id}}" aria-label="..."></td>
+                    <td>{{number @index}}</td>
+                    <td><a href="/admin/student/{{_id}}">
+                      {{#if profilePhoto}}
+                        <i class="fa fa-user-circle" aria-hidden="true"></i> {{full_name}}
+                      {{else}}
+                        {{full_name}}
+                      {{/if}}
+                    </a></td>
+                    <td>{{gender}}</td>
+                    <td>{{email}}</td>
+                    <td>{{telephone}}</td>
+                    <td style="text-align: center">
+                      {{#if ifEnrolled}}
+                        <button class="btn btn-sm disabled {{enrollCSS}}">{{enrollStatus}}</button>
+                      {{else}}
+                        <button class="btn btn-warning btn-sm btn-pending ">{{enrollStatus}}</button>
+                      {{/if}}
+
+                    </td>
+                  </tr>
+                {{/if}}
+
+              {{/each}}
+
+            {{else}}
+              {{> spinner}}
+            {{/if}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+  {{/with}}
+</template>

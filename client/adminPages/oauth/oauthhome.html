@@ -1,0 +1,60 @@
+<template name="oauthhome">
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title">Oauth Client Setting</h3>
+    </div>
+    <div class="panel-body">
+
+      {{#if clientCount}}
+          <p>Client created.</p>
+          <p>
+              For the sake of testing, you can remove all the created clients.
+              <button type="button" class="deleteAllClients">Delete All</button>
+          </p>
+      {{/if}}
+
+      {{#unless clientCount}}
+      <div class="row">
+
+        <div class="input-group">
+          <span class="input-group-addon">Client Name</span>
+          <input type="text" class="form-control" id="clientName" value="My Client Name">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="input-group">
+          <span class="input-group-addon">Client ID</span>
+          <input type="text" class="form-control" id="clientId" value="clientApplication">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="input-group">
+          <span class="input-group-addon">Redirect URI</span>
+          <input type="text" class="form-control" id="redirectUri" value="http://localhost:3200/_oauth/MeteorOAuth2Server">
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="input-group">
+          <span class="input-group-addon">Client Secret</span>
+          <input type="text" class="form-control" id="clientSecret" value="12345">
+        </div>
+
+      </div>
+
+      <div class="btn-group">
+        <button type="button" class="btn btn-primary btn-add">Add Client</button>
+      </div>
+      {{/unless}}
+    </div>
+  </div>
+
+</template>

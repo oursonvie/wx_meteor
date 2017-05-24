@@ -1,0 +1,34 @@
+<template name="nav">
+  <div class="navbar navbar-default" role="navigation">
+    <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">IKCEST</a>
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li role="presentation" class={{isActiveRoute 'home'}}><a href="/">Home</a></li>
+          <li role="presentation" class={{isActiveRoute 'news'}}><a href="/news">News</a></li>
+          <li role="presentation" class={{isActiveRoute 'program'}}><a href="/program">Program</a></li>
+
+          {{#if currentUser }}
+            {{#if isInRole 'admin'}}
+
+            {{else}}
+              <li role="presentation" class={{isActiveRoute 'me'}}><a href="/me">Me</a></li>
+            {{/if}}
+          {{/if}}
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          {{> loginButtons}}
+        </ul>
+    </div>
+  </div>
+</div>
+</template>
